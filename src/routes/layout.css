@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+body {
+	@apply bg-[#1e1e1e] text-neutral-200 antialiased;
+	font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.range {
+	accent-color: var(--color-sky-500);
+	height: 4px;
+}
