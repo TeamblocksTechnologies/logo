@@ -1,5 +1,6 @@
 /**
- * Renders every logo variant from src/lib/logo/defaults.ts into exports/.
+ * Renders every logo variant from src/lib/logo/defaults.ts into exports/,
+ * plus transparent-background copies in exports/transparent/.
  * Run with `pnpm export`.
  */
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -19,22 +20,31 @@ const font = opentype.parse(
 	fontFile.buffer.slice(fontFile.byteOffset, fontFile.byteOffset + fontFile.byteLength)
 );
 
+const sets = [
+	{ dir: outDir, colors: EXPORT_DEFAULTS.colors },
+	{ dir: `${outDir}/transparent`, colors: { ...EXPORT_DEFAULTS.colors, transparent: true } }
+];
+
 await rm(outDir, { recursive: true, force: true });
-await mkdir(outDir, { recursive: true });
 
-for (const variant of variants) {
-	const art = buildArtboard(variant, LOGO_DEFAULTS, EXPORT_DEFAULTS.frames[variant], font);
-	const svg = renderSvg(art, EXPORT_DEFAULTS.colors);
-	const name = `teamblocks-${variant}`;
-	await writeFile(`${outDir}/${name}.svg`, `${svg}\n`);
-	console.log(`${name}.svg  ${art.width} × ${art.height}`);
+for (const { dir, colors } of sets) {
+	await mkdir(dir, { recursive: true });
+	const label = dir.slice(root.length);
 
-	for (const scale of pngScales) {
-		const png = new Resvg(svg, { fitTo: { mode: 'width', value: art.width * scale } })
-			.render()
-			.asPng();
-		const file = `${name}${scale === 1 ? '' : `@${scale}x`}.png`;
-		await writeFile(`${outDir}/${file}`, png);
-		console.log(`${file}  ${art.width * scale} × ${art.height * scale}`);
+	for (const variant of variants) {
+		const art = buildArtboard(variant, LOGO_DEFAULTS, EXPORT_DEFAULTS.frames[variant], font);
+		const svg = renderSvg(art, colors);
+		const name = `teamblocks-${variant}`;
+		await writeFile(`${dir}/${name}.svg`, `${svg}\n`);
+		console.log(`${label}/${name}.svg  ${art.width} × ${art.height}`);
+
+		for (const scale of pngScales) {
+			const png = new Resvg(svg, { fitTo: { mode: 'width', value: art.width * scale } })
+				.render()
+				.asPng();
+			const file = `${name}${scale === 1 ? '' : `@${scale}x`}.png`;
+			await writeFile(`${dir}/${file}`, png);
+			console.log(`${label}/${file}  ${art.width * scale} × ${art.height * scale}`);
+		}
 	}
 }

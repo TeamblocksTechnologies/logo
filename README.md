@@ -16,7 +16,8 @@ Ready-to-use files live in [`exports/`](exports), generated from
 pnpm export
 ```
 
-Each design comes as an SVG plus PNGs at 1x, 2x and 4x.
+Each design comes as an SVG plus PNGs at 1x, 2x and 4x. Transparent-background
+versions of every file are in [`exports/transparent/`](exports/transparent).
 
 | Design  | Preview                                       |
 | ------- | --------------------------------------------- |
