@@ -1,6 +1,6 @@
-import type { ExportSettings, FrameSettings, LogoSettings, Variant } from './defaults';
-import { iconShape, unionBounds, type Vec } from './geometry';
-import { fontSizeForCapHeight, textShape, type Font } from './text';
+import type { ExportSettings, FrameSettings, LogoSettings, Variant } from './defaults.ts';
+import { iconShape, unionBounds, type Vec } from './geometry.ts';
+import { fontSizeForCapHeight, textShape, type Font } from './text.ts';
 
 export interface Artboard {
 	variant: Variant;

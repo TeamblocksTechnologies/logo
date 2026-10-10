@@ -1,5 +1,5 @@
 import opentype from 'opentype.js';
-import { emptyBounds, type Bounds } from './geometry';
+import { emptyBounds, type Bounds } from './geometry.ts';
 
 export type Font = opentype.Font;
 

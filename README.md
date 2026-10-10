@@ -7,6 +7,23 @@ pnpm install
 pnpm dev
 ```
 
+## Exports
+
+Ready-to-use files live in [`exports/`](exports), generated from
+`src/lib/logo/defaults.ts`. After changing the defaults, regenerate them with:
+
+```sh
+pnpm export
+```
+
+Each design comes as an SVG plus PNGs at 1x, 2x and 4x.
+
+| Design  | Preview                                       |
+| ------- | --------------------------------------------- |
+| Logo    | ![Logo](exports/teamblocks-logo.png)          |
+| Icon    | ![Icon](exports/teamblocks-icon.png)          |
+| Favicon | ![Favicon](exports/teamblocks-favicon@4x.png) |
+
 ## Where things live
 
 - `src/lib/logo/defaults.ts` — the canonical logo values (`LOGO_DEFAULTS`) and

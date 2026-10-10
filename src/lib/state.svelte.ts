@@ -4,7 +4,7 @@ import {
 	type ExportSettings,
 	type LogoSettings,
 	type Variant
-} from './logo/defaults';
+} from './logo/defaults.ts';
 
 const STORAGE_KEY = 'teamblocks-logo:v2';
 

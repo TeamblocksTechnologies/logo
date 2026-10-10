@@ -1,4 +1,4 @@
-import { ARROW_LENGTH, type IconSettings } from './defaults';
+import { ARROW_LENGTH, type IconSettings } from './defaults.ts';
 
 export interface Vec {
 	x: number;

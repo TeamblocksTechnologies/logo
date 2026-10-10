@@ -1,4 +1,4 @@
-import type { LogoSettings } from './defaults';
+import type { LogoSettings } from './defaults.ts';
 
 function download(blob: Blob, filename: string) {
 	const url = URL.createObjectURL(blob);
