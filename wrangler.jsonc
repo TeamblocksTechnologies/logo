@@ -2,12 +2,12 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "logo",
 	"compatibility_date": "2026-10-10",
-	"compatibility_flags": ["nodejs_als"],
-	"main": ".svelte-kit/cloudflare/_worker.js",
+	// Static assets only: the app is fully prerendered and runs in the browser.
 	"assets": {
-		"binding": "ASSETS",
-		"directory": ".svelte-kit/cloudflare"
+		"directory": "./build",
+		"not_found_handling": "404-page"
 	},
-	"workers_dev": true,
+	"routes": [{ "pattern": "logo.teamblocks.dev", "custom_domain": true }],
+	"workers_dev": false,
 	"preview_urls": true
 }

@@ -7,6 +7,17 @@ pnpm install
 pnpm dev
 ```
 
+## Deploying
+
+The app is fully static (prerendered, everything runs in the browser), so it
+deploys to Cloudflare Workers as static assets with no Worker script. It is
+served at [logo.teamblocks.dev](https://logo.teamblocks.dev).
+
+```sh
+pnpm preview     # build and serve locally with wrangler
+pnpm run deploy  # build and deploy (run `pnpm wrangler login` first)
+```
+
 ## Exports
 
 Ready-to-use files live in [`exports/`](exports), generated from
